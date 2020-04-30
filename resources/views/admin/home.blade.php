@@ -64,7 +64,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         @if ($message = Session::get('success'))
-                                        <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                                        <div
+                                            class="sufee-alert alert with-close alert-success alert-dismissible fade show">
                                             {{ $message }}
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -72,23 +73,102 @@
                                         </div>
                                         @endif
                                     </div>
-                                </div>
-                                <!-- END MAIN CONTENT -->
-
-                                <!-- FOOTER -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @include('admin/include/footer')
+                                
+                                    <div class="row m-t-25">
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="overview-item overview-item--c1">
+                                                <div class="overview__inner">
+                                                    <div class="overview-box clearfix">
+                                                        <div class="icon">
+                                                            <i class="zmdi zmdi-account-o"></i>
+                                                        </div>
+                                                        <div class="text">
+                                                            <h2>{{ $jml_users[0]->jumlah }}</h2>
+                                                            <span>Member Terdaftar</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overview-chart">
+                                                        <canvas id="widgetChart1"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="overview-item overview-item--c2">
+                                                <div class="overview__inner">
+                                                    <div class="overview-box clearfix">
+                                                        <div class="icon">
+                                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                                        </div>
+                                                        <div class="text">
+                                                            <h2>{{ $jml_order[0]->jumlah }}</h2>
+                                                            <span>Transaksi Sukses</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overview-chart">
+                                                        <canvas id="widgetChart2"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="overview-item overview-item--c3">
+                                                <div class="overview__inner">
+                                                    <div class="overview-box clearfix">
+                                                        <!-- <div class="icon">
+                                                            <i class="zmdi zmdi-calendar-note"></i>
+                                                        </div> -->
+                                                        <div class="text">
+                                                            <h2>Rp. {{ number_format($jml_daily,0,',','.') }}</h2>
+                                                            <span>Penjualan Hari ini</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overview-chart">
+                                                        <canvas id="widgetChart3"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-3">
+                                            <div class="overview-item overview-item--c4">
+                                                <div class="overview__inner">
+                                                    <div class="overview-box clearfix">
+                                                        <!-- <div class="icon">
+                                                            <i class="zmdi zmdi-money"></i>
+                                                        </div> -->
+                                                        <div class="text">
+                                                            <h2>Rp. {{ number_format($jml_pendapatan,0,',','.') }}</h2>
+                                                            <span>Total Pendapatan</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="overview-chart">
+                                                        <canvas id="widgetChart4"></canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                             
                                 </div>
-                                <!-- END FOOTER -->
                             </div>
+
+                            <!-- END MAIN CONTENT -->
+
+                            <!-- FOOTER -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @include('admin/include/footer')
+                                </div>
+                            </div>
+                            <!-- END FOOTER -->
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-        <!-- END PAGE CONTENT  -->
+            
+    </div>
+    <!-- END PAGE CONTENT  -->
     </div>
 
     @include('admin/include/javascript')
