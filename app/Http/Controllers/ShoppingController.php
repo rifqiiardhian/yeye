@@ -341,7 +341,7 @@ class ShoppingController extends Controller
             'status_transaksi' => 'success',
         ]);
 
-        return redirect('/shop/history/paid/' .$id)->with(['success' => 'Pembayaran selesai, terimakasih !']);
+        return redirect('/shop/history/paid/' .$id_nota)->with(['success' => 'Pembayaran selesai, terimakasih !']);
     }
 
     public function paid($id) {
