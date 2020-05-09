@@ -48,9 +48,11 @@ class AuthController extends Controller
             Session::put('login',TRUE);
 
             if ($id_role == 1) {
-                return redirect('a/home')->with(['success' => 'Selamat datang ' .$nama.' !']);
+                return redirect('a/category')->with(['success' => 'Selamat datang ' .$nama.' !']);
             } elseif ($id_role == 2) {
                 return redirect('/')->with(['success' => 'Selamat datang ' .$nama.' !']);
+            } elseif ($id_role == 3) {
+                return redirect('a/home')->with(['success' => 'Selamat datang ' .$nama.' !']);
             }
 
         } else {

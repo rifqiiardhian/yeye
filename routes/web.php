@@ -94,4 +94,6 @@ Route::get('a/inventory/print/{id}', 'admin\InventoryController@print');
 Route::get('a/contact', 'admin\ContactController@index');
 Route::get('/a/contact/detail/{id}', 'admin\ContactController@detail');
 Route::get('/a/contact/delete/{id}', 'admin\ContactController@delete');
+//List User
+Route::get('a/list-user', 'admin\ListUserController@index');
 // End Admin Routing
