@@ -44,15 +44,14 @@ Route::post('/shop/checkout/process', 'ShoppingController@done');
 Route::get('/shop/history/unpaid/{id}', 'ShoppingController@unpaid');
 Route::get('/shop/history/paid/process', 'ShoppingController@paid_process');
 Route::get('/shop/history/paid/{id}', 'ShoppingController@paid');
+// Contact
+Route::get('/contact', 'ContactController@index');
+Route::post('/contact/post', 'ContactController@success');
 // End User Routing
 
 // Start Admin Routing
 // Home
 Route::get('a/home', 'admin\HomeController@index');
-//ChartPendapatan
-Route::get('a/home', 'admin\HomeController@index');
-Route::get('a/home/laporan-pendapatan','admin\HomeController@getLaporanPendapatan');
-
 // Category
 Route::get('a/category', 'admin\CategoryController@index');
 Route::get('/a/category/add', 'admin\CategoryController@add');
@@ -88,4 +87,8 @@ Route::get('a/inventory/cancel/{id}', 'admin\InventoryController@cancel');
 Route::get('a/inventory/detail/{id}', 'admin\InventoryController@detail');
 Route::get('a/inventory/download/{id}', 'admin\InventoryController@download');
 Route::get('a/inventory/print/{id}', 'admin\InventoryController@print');
+// Kontak
+Route::get('a/contact', 'admin\ContactController@index');
+Route::get('/a/contact/detail/{id}', 'admin\ContactController@detail');
+Route::get('/a/contact/delete/{id}', 'admin\ContactController@delete');
 // End Admin Routing
