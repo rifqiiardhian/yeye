@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Apr 2020 pada 16.03
+-- Waktu pembuatan: 09 Bulan Mei 2020 pada 16.52
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.1
 
@@ -91,7 +91,32 @@ INSERT INTO `t_keranjang` (`nama_produk`, `harga_satuan`, `jumlah`, `subtotal`, 
 ('Patek Philippe', '2799900.00', 1, '2799900.00', 34, 1),
 ('Rolex Daytona', '3750000.00', 1, '3750000.00', 34, 2),
 ('Patek Philippe', '2799900.00', 8, '22399200.00', 37, 1),
-('Rolex Daytona', '3750000.00', 9, '33750000.00', 38, 2);
+('Rolex Daytona', '3750000.00', 9, '33750000.00', 38, 2),
+('Rolex Daytona', '3750000.00', 1, '3750000.00', 39, 2),
+('Rolex Daytona', '3750000.00', 1, '3750000.00', 40, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_kontak`
+--
+
+CREATE TABLE `t_kontak` (
+  `id` int(11) NOT NULL,
+  `subjek` varchar(255) NOT NULL,
+  `pesan` text NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telepon` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `t_kontak`
+--
+
+INSERT INTO `t_kontak` (`id`, `subjek`, `pesan`, `nama`, `email`, `telepon`) VALUES
+(1, 'Tanggapan', 'Keren Barangnya', 'berliana', 'berliana@gmail.com', '085608978090'),
+(9, 'Saran', 'Semangat untuk para developer', 'Viola', 'viola@gmail.com', '087457297432');
 
 -- --------------------------------------------------------
 
@@ -115,11 +140,12 @@ CREATE TABLE `t_menu` (
 
 INSERT INTO `t_menu` (`id`, `urutan`, `url`, `nama`, `icon`, `active`, `id_role`) VALUES
 (1, 1, 'a/home', 'Home', 'fas fa-home', 'home_active', 1),
-(2, 7, 'a/logout', 'Logout', 'fas fa-power-off', '', 1),
+(2, 8, 'a/logout', 'Logout', 'fas fa-power-off', '', 1),
 (3, 2, 'a/category', 'Kategori', 'fas fa-list', 'category_active', 1),
 (4, 3, 'a/product', 'Produk', 'fas fa-list', 'product_active', 1),
 (5, 4, 'a/supplier', 'Supplier', 'fas fa-list', 'supplier_active', 1),
-(6, 6, 'a/inventory', 'Riwayat Pembelian', 'fas fa-list', 'inventory_active', 1);
+(6, 6, 'a/inventory', 'Riwayat Pembelian', 'fas fa-list', 'inventory_active', 1),
+(7, 7, 'a/contact', 'Kontak', 'fas fa-list', 'contact_active', 1);
 
 -- --------------------------------------------------------
 
@@ -150,7 +176,9 @@ INSERT INTO `t_nota` (`id`, `tanggal`, `total`, `ppn`, `tagihan`, `id_customer`,
 (14, '2020-04-24 07:47:49', '7500000.00', '10.00', '8250000.00', 1, 'PT Adil Makmur Indonesia Tbk', 'pembelian', 1, 'Rifqi Ardhian', 'success'),
 (34, '2020-04-25 09:45:42', '6549900.00', '10.00', '7204890.00', 5, 'Rifqi Ardhian', 'penjualan', 0, '', 'success'),
 (37, '2020-04-25 13:57:37', '22399200.00', '10.00', '24639120.00', 1, 'PT Adil Makmur Indonesia Tbk', 'pembelian', 1, 'Rifqi Ardhian', 'success'),
-(38, '2020-04-25 13:58:30', '33750000.00', '10.00', '37125000.00', 1, 'PT Adil Makmur Indonesia Tbk', 'pembelian', 1, 'Rifqi Ardhian', 'success');
+(38, '2020-04-25 13:58:30', '33750000.00', '10.00', '37125000.00', 1, 'PT Adil Makmur Indonesia Tbk', 'pembelian', 1, 'Rifqi Ardhian', 'success'),
+(39, '2020-04-26 13:03:25', '3750000.00', '10.00', '4125000.00', 7, 'berliana', 'penjualan', 0, '', 'success'),
+(40, '2020-04-26 13:15:08', '3750000.00', '10.00', '4125000.00', 7, 'berliana', 'penjualan', 0, '', 'success');
 
 -- --------------------------------------------------------
 
@@ -175,7 +203,11 @@ CREATE TABLE `t_pengiriman` (
 --
 
 INSERT INTO `t_pengiriman` (`id`, `id_nota`, `alamat_pengiriman`, `kecamatan`, `kota`, `provinsi`, `kodepos`, `telepon`, `id_jasa_pengiriman`) VALUES
-(2, 34, 'Jalan Bendungan Wlingi No. 30', 'Lowokwaru', 'Malang', 'Jawa Timur', 65145, '6281334457150', 1);
+(2, 34, 'Jalan Bendungan Wlingi No. 30', 'Lowokwaru', 'Malang', 'Jawa Timur', 65145, '6281334457150', 1),
+(3, 39, 'Jl Simpang Piranha Atas No. 08', 'Tunjung Sekar', 'Malang', 'Jawa Timur', 16412, '085608978095', 4),
+(4, 40, 'Jl Simpang Piranha Atas No. 08', 'Tunjung Sekar', 'Malang', 'Jawa Timur', 16412, '085608978098', 4),
+(5, 42, '', '', '', '', 0, '', 0),
+(6, 41, '', '', '', '', 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -220,7 +252,7 @@ CREATE TABLE `t_produk` (
 
 INSERT INTO `t_produk` (`id`, `nama`, `foto`, `harga`, `deskripsi`, `stok`, `id_kategori`) VALUES
 (1, 'Patek Philippe', 'assets/gambarproduk/patek.png', '2799900.00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 9, 7),
-(2, 'Rolex Daytona', 'assets/gambarproduk/rolex.png', '3750000.00', 'Swiss Made', 10, 7);
+(2, 'Rolex Daytona', 'assets/gambarproduk/rolex.png', '3750000.00', 'Swiss Made', 8, 7);
 
 -- --------------------------------------------------------
 
@@ -292,7 +324,8 @@ CREATE TABLE `t_user` (
 INSERT INTO `t_user` (`id`, `nama`, `email`, `password`, `telepon`, `provinsi`, `kota`, `kecamatan`, `kodepos`, `alamat`, `id_role`) VALUES
 (1, 'Rifqi Ardhian', 'rifqiardhian@gmail.com', '83c9c36fcc0b177e01d6182b2583bb30', '6281334457150', '', '', '', 0, '', 1),
 (5, 'Rifqi Ardhian', 'rifqiardhian@gmail.com', '62a415ea2b60a33b87aa005cb9c4e9ff', '6281334457150', 'Jawa Timur', 'Malang', 'Lowokwaru', 65145, 'Jalan Bendungan Wlingi No. 30', 2),
-(6, 'Administrator', 'admin@helpdesk.it', '7488e331b8b64e5794da3fa4eb10ad5d', '6281336778789', '', '', '', 0, '', 1);
+(6, 'Administrator', 'admin@helpdesk.it', '7488e331b8b64e5794da3fa4eb10ad5d', '6281336778789', '', '', '', 0, '', 1),
+(7, 'berliana', 'berliana@gmail.com', '63dd91cae65d12cba5b40e9cc6c5b9b6', '', '', '', '', 0, '', 2);
 
 -- --------------------------------------------------------
 
@@ -334,6 +367,12 @@ ALTER TABLE `t_jasa_pengiriman`
 -- Indeks untuk tabel `t_kategori`
 --
 ALTER TABLE `t_kategori`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `t_kontak`
+--
+ALTER TABLE `t_kontak`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -401,34 +440,40 @@ ALTER TABLE `t_kategori`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT untuk tabel `t_kontak`
+--
+ALTER TABLE `t_kontak`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT untuk tabel `t_menu`
 --
 ALTER TABLE `t_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_nota`
 --
 ALTER TABLE `t_nota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_pengiriman`
 --
 ALTER TABLE `t_pengiriman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_preview_produk`
 --
 ALTER TABLE `t_preview_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_produk`
 --
 ALTER TABLE `t_produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_role`
@@ -446,7 +491,7 @@ ALTER TABLE `t_supplier`
 -- AUTO_INCREMENT untuk tabel `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
