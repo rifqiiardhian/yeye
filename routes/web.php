@@ -52,6 +52,9 @@ Route::post('/contact/post', 'ContactController@success');
 // Start Admin Routing
 // Home
 Route::get('a/home', 'admin\HomeController@index');
+//ChartPendapatan
+Route::get('a/home', 'admin\HomeController@index');
+Route::get('a/home/laporan-pendapatan','admin\HomeController@getLaporanPendapatan');
 // Category
 Route::get('a/category', 'admin\CategoryController@index');
 Route::get('/a/category/add', 'admin\CategoryController@add');
