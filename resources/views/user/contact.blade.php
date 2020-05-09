@@ -65,19 +65,19 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="text" placeholder="Nama" id="nama" name="nama">
+                                <input type="text" placeholder="Nama" id="nama" name="nama" required>
                             </div>
                             <div class="col-lg-12">                              
-                                <input type="email" placeholder="Email" id="email" name="email">
+                                <input type="email" placeholder="Email" id="email" name="email" required>
                             </div>
                             <div class="col-lg-12">
-                                <input type="tel" placeholder="No Telepon" id="telepon" name="telepon">
+                                <input type="tel" placeholder="No Telepon" id="telepon" name="telepon" required>
                             </div>
                             <div class="col-lg-12">
-                                <input type="text" placeholder="Subjek" id="subjek" name="subjek">
+                                <input type="text" placeholder="Subjek" id="subjek" name="subjek" required>
                             </div>
                             <div class="col-lg-12">
-                                <textarea placeholder="Pesan" id="pesan" name="pesan"></textarea>
+                                <textarea placeholder="Pesan" id="pesan" name="pesan" required></textarea>
                             </div>
                             <div class="col-lg-12 text-right">
                                 <button type="submit">Kirim Pesan</button>
