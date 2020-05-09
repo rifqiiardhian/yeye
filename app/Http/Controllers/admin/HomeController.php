@@ -72,4 +72,16 @@ class HomeController extends Controller
                             ->SUM('tagihan');
                             return $total_revenue;
     }
+
+    public function __construct()
+    {
+        
+    }
+
+    public function getLaporanPendapatan(Request $request)
+    {
+        $result = DB::select("SELECT DATE_FORMAT(tanggal, '%d %M %Y') AS tgl, SUM(total) AS `total` 
+             FROM `t_nota` WHERE `jenis_faktur` = 'penjualan' AND `status_transaksi` = 'success' GROUP BY `tgl` ORDER BY `tgl` ASC", []);
+        return response($result);
+    }
 }

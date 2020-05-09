@@ -9,6 +9,11 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
 
+    {{-- CSS --}}
+    <link rel="stylesheet" href="{{url('/assets/library/bootstrap-4.4.1-dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url('/assets/highcharts/code/css/highcharts.css')}}">
+    <link rel="stylesheet" href="{{url('/assets/style.css')}}">
+
     <!-- Title Page-->
     <title>{{ $title }}</title>
     @include('admin/include/css')
@@ -152,6 +157,16 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12 mt-5">
+                               <div class="card">
+                                   <div class="card-header">
+                                          Laporan Pendapatan
+                                               </div>
+                                           <div class="card-body">
+                                             <div id="grafik-pendapatan" style="height: 400px;"></div>
+                                         </div>
+                                      </div>
+                                </div>
                             <!-- END MAIN CONTENT -->
 
                             <!-- FOOTER -->
@@ -171,6 +186,12 @@
     <!-- END PAGE CONTENT  -->
     </div>
 
+    {{-- JAVASCRIPT --}}
+    <script src="{{url('/assets/library/jquery-3.4.1.js')}}"></script>
+    <script src="{{url('/assets/library/bootstrap-4.4.1-dist/js/bootstrap.js')}}"></script>
+    <script src="{{url('/assets/highcharts/code/highcharts.js')}}"></script>
+    <script src="{{url('/assets/app.js')}}"></script>
+    
     @include('admin/include/javascript')
 
 </body>
