@@ -27,6 +27,8 @@ Route::get('/logout', 'AuthController@logout');
 // Start User Routing
 // Home
 Route::get('/', 'HomeController@index');
+// About
+Route::get('/about', 'AboutController@index');
 // profile
 Route::get('/profile', 'AuthController@profile');
 Route::post('/profile/update', 'AuthController@update_profile');

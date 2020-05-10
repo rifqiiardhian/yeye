@@ -17,9 +17,9 @@
             <nav class="main-menu mobile-menu">
                 <ul>
                     <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="./product-page.html">About</a></li>
+                    <li><a href="{{ url('/about') }}">About</a></li>
                     <li><a href="{{ url('/product') }}">Shop</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="{{ url('/contact') }}">Contact</a></li>
                     @if(empty(Session::get('role') == 2))
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     @else
