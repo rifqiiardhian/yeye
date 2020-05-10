@@ -11,7 +11,7 @@ use PDF;
 
 class RiwayatPenjualanController extends Controller
 {
-    // Riwayat Pembelian ke Supplier
+    // Riwayat Penjualan ke Supplier
     public function index() {
         if(!Session::get('login')) {
             return redirect('/login')->with(['error' => 'Anda harus login terlebih dahulu !']);
@@ -25,9 +25,9 @@ class RiwayatPenjualanController extends Controller
             $data['welcome_title'] = 'Halaman Admin Riwayat Penjualan';
             $data['breadcrumb'] = 'Riwayat Penjualan';
 
-            $data['pending'] = DB::table("t_nota")
+            $data['unpaid'] = DB::table("t_nota")
                                 ->where([
-                                    ['status_transaksi', 'pending'],
+                                    ['status_transaksi', 'unpaid'],
                                     ['jenis_faktur', '=', 'penjualan']
                                 ])->get();
 
@@ -49,7 +49,7 @@ class RiwayatPenjualanController extends Controller
         $nama_pegawai = Session::get('nama');
         $id_produk = $request->get('productId');
 
-        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'pending' AND `jenis_faktur` = 'pembelian' AND `id_pegawai` = '$id_pegawai'");
+        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'unpaid' AND `jenis_faktur` = 'Penjualan' AND `id_pegawai` = '$id_pegawai'");
 
         // Cek apakah nota telah dibuat atau belum
         if(!empty($nota)) {
@@ -114,13 +114,13 @@ class RiwayatPenjualanController extends Controller
                 'tagihan' => 0,
                 'id_customer' => 0,
                 'nama_customer' => '',
-                'jenis_faktur' => 'pembelian',
+                'jenis_faktur' => 'Penjualan',
                 'id_pegawai' => $id_pegawai,
                 'nama_pegawai' => $nama_pegawai,
-                'status_transaksi' => 'pending',
+                'status_transaksi' => 'unpaid',
             ]);
 
-            return redirect('/a/inventory/cart?productId=' .$id_produk)->with(['success' => 'Data berhasil ditambahkan ke keranjang']);
+            return redirect('/a/riwayat_penjualan/cart?productId=' .$id_produk)->with(['success' => 'Data berhasil ditambahkan ke keranjang']);
         }
 
         // Cek jumlah keranjang untuk menampilkan button cancel
@@ -157,18 +157,18 @@ class RiwayatPenjualanController extends Controller
         $id_pegawai = Session::get('id_user');
         $id_produk = $request->get('productId');
 
-        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'pending' AND `jenis_faktur` = 'pembelian' AND `id_pegawai` = '$id_pegawai'");
+        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'unpaid' AND `jenis_faktur` = 'Penjualan' AND `id_pegawai` = '$id_pegawai'");
         $keranjang = DB::selectOne("SELECT * FROM `t_keranjang` WHERE `id_nota` = '$nota->id' AND `id_produk` = '$id_produk'");
         $produk = DB::selectOne("SELECT * FROM `t_produk` WHERE `id` = '$id_produk'");
 
-        // Menghitung subtotal baru setelah update jumlah pembelian
+        // Menghitung subtotal baru setelah update jumlah Penjualan
         $jumlahlama = $keranjang->jumlah;
         $subtotal = intval($keranjang->subtotal);
 
         $jumlahbaru = $jumlahlama - 1;
         $subtotalbaru = ($subtotal / $jumlahlama) * $jumlahbaru;
 
-        // Menghitung total dan tagihan baru setelah update jumlah pembelian
+        // Menghitung total dan tagihan baru setelah update jumlah Penjualan
         $total = $nota->total;
         $totalnotabaru = ( $total - $subtotal ) + $subtotalbaru;
         $tagihanbaru = $totalnotabaru + ($totalnotabaru * 0.1);
@@ -189,14 +189,14 @@ class RiwayatPenjualanController extends Controller
         if($jumlahbaru == 0) {
             DB::table('t_keranjang')->where([['id_nota', $nota->id], ['id_produk', $id_produk]])->delete();
 
-            return redirect('/a/inventory/cart');
+            return redirect('/a/riwayat_penjualan/cart');
         } else {
             DB::table('t_keranjang')->where([['id_nota', $nota->id], ['id_produk', $id_produk]])->update([
                 'jumlah' => $jumlahbaru,
                 'subtotal' => $subtotalbaru
             ]);
 
-            return redirect('/a/inventory/cart');
+            return redirect('/a/riwayat_penjualan/cart');
         }
 
     }
@@ -206,11 +206,11 @@ class RiwayatPenjualanController extends Controller
         $id_pegawai = Session::get('id_user');
         $id_produk = $request->get('productId');
 
-        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'pending' AND `jenis_faktur` = 'pembelian' AND `id_pegawai` = '$id_pegawai'");
+        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'unpaid' AND `jenis_faktur` = 'Penjualan' AND `id_pegawai` = '$id_pegawai'");
         $keranjang = DB::selectOne("SELECT * FROM `t_keranjang` WHERE `id_nota` = '$nota->id' AND `id_produk` = '$id_produk'");
         $produk = DB::selectOne("SELECT * FROM `t_produk` WHERE `id` = '$id_produk'");
 
-        // Menghitung subtotal baru setelah update jumlah pembelian
+        // Menghitung subtotal baru setelah update jumlah Penjualan
         $jumlahlama = $keranjang->jumlah;
         $subtotal = intval($keranjang->subtotal);
 
@@ -222,7 +222,7 @@ class RiwayatPenjualanController extends Controller
             'subtotal' => $subtotalbaru
         ]);
 
-        // Menghitung total dan tagihan baru setelah update jumlah pembelian
+        // Menghitung total dan tagihan baru setelah update jumlah Penjualan
         $total = $nota->total;
         $totalnotabaru = ( $total - $subtotal ) + $subtotalbaru;
         $tagihanbaru = $totalnotabaru + ($totalnotabaru * 0.1);
@@ -240,7 +240,7 @@ class RiwayatPenjualanController extends Controller
             'stok' => $stokbaru,
         ]);
 
-        return redirect('/a/inventory/cart');
+        return redirect('/a/riwayat_penjualan/cart');
     }
 
     // Fungsi Checkout Transaksi
@@ -258,7 +258,7 @@ class RiwayatPenjualanController extends Controller
             'nama_customer' => $nama_supplier
         ]);
 
-        return redirect('/a/inventory')->with(['success' => 'Pembelian barang sukses !']);
+        return redirect('/a/inventory')->with(['success' => 'Penjualan barang sukses !']);
 
     }
 
@@ -267,7 +267,7 @@ class RiwayatPenjualanController extends Controller
         DB::table('t_nota')->where('id', $id)->delete();
         DB::table('t_keranjang')->where('id_nota', $id)->delete();
 
-        return redirect('/a/product')->with(['success' => 'Pembelian barang dibatalkan']);
+        return redirect('/a/product')->with(['success' => 'Penjualan barang dibatalkan']);
     }
 
     public function detail($id) {
@@ -286,34 +286,34 @@ class RiwayatPenjualanController extends Controller
 
         $data['nota'] = $nota;
 
-        return view('admin/riwayat_penjualan', $data);
+        return view('admin/riwayat_penjualan_detail', $data);
     }
 
     // Fungsi Download Faktur
     public function download($id) {
-        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'success' AND `jenis_faktur` = 'pembelian' AND `id` = '$id'");
+        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'success' AND `jenis_faktur` = 'penjualan' AND `id` = '$id'");
         $datacart['cart'] = DB::table('t_keranjang')->where('id_nota', $nota->id)->get();
         $nota = (object)array_merge((array)$nota, (array)$datacart);
 
         $data['nota'] = $nota;
-        $data['title'] = 'Faktur Pembelian No.' .$id;
+        $data['title'] = 'Faktur Penjualan No.' .$id;
 
         $pdf = PDF::loadview('admin/inventory_preview', $data);
-        return $pdf->download('faktur-pembelian-no-'.$id.'.pdf');
+        return $pdf->download('faktur-penjualan-no-'.$id.'.pdf');
 
-        return redirect('/a/inventory/detail/' .$id);
+        return redirect('/a/riwayat-penjualan/detail/' .$id);
     }
 
     // Fungsi print faktur
     public function print($id) {
-        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'success' AND `jenis_faktur` = 'pembelian' AND `id` = '$id'");
+        $nota = DB::selectOne("SELECT * FROM `t_nota` WHERE `status_transaksi` = 'success' AND `jenis_faktur` = 'penjualan' AND `id` = '$id'");
         $datacart['cart'] = DB::table('t_keranjang')->where('id_nota', $nota->id)->get();
         $nota = (object)array_merge((array)$nota, (array)$datacart);
 
         $data['nota'] = $nota;
-        $data['title'] = 'Faktur Pembelian No.' .$id;
+        $data['title'] = 'Riwayat Penjualan No.' .$id;
 
-        $pdf = PDF::loadview('admin/inventory_preview', $data);
+        $pdf = PDF::loadview('admin/riwayat_penjualan_preview', $data);
         return $pdf->stream();
     }
 }

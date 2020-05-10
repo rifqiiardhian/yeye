@@ -93,12 +93,12 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($pending as $datapending)
-                                                    @if(!empty($pending))
+                                                    @foreach($unpaid as $dataunpaid)
+                                                    @if(!empty($unpaid))
                                                     <tr>
-                                                        <td>{{ $datapending->id }}</td>
-                                                        <td>IDR. {{ intval($datapending->tagihan) }}</td>
-                                                        <td class="text-danger">{{ $datapending->status_transaksi }}</td>
+                                                        <td>{{ $dataunpaid->id }}</td>
+                                                        <td>IDR. {{ intval($dataunpaid->tagihan) }}</td>
+                                                        <td class="text-danger">{{ $dataunpaid->status_transaksi }}</td>
                                                         <td>
                                                             <a href="{{ url('/a/riwayat-penjualan/detail') }}">
                                                                 <button type="button" class="btn btn-info btn-sm">

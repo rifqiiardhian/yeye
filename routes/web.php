@@ -99,4 +99,6 @@ Route::get('a/list-user', 'admin\ListUserController@index');
 //Riwayat Penjualan
 Route::get('a/riwayat-penjualan', 'admin\RiwayatPenjualanController@index');
 Route::get('a/riwayat-penjualan/detail/{id}', 'admin\RiwayatPenjualanController@detail');
+Route::get('a/riwayat-penjualan/download/{id}', 'admin\RiwayatPenjualanController@download');
+Route::get('a/riwayat-penjualan/print/{id}', 'admin\RiwayatPenjualanController@print');
 // End Admin Routing

@@ -63,13 +63,13 @@
                                 <!-- MAIN CONTENT -->
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <a href="{{url('/a/inventory')}}" class="mb-4"><p><span class="fas fa-arrow-left"></span> Kembali</p></a>
+                                        <a href="{{url('/a/riwayat-penjualan')}}" class="mb-4"><p><span class="fas fa-arrow-left"></span> Kembali</p></a>
                                         <h2>Riwayat Penjualan</h2>
                                         <p>PT Toko Online Indonesia Tbk.</p>
                                         <hr>
                                         <table class="mt-4 mb-4">
                                             <tr>
-                                                <td>No Faktur</td><td class="text-center" style="width: 50px"> : </td><td>{{ $nota->id }}</td>
+                                                <td>No Penjualan</td><td class="text-center" style="width: 50px"> : </td><td>{{ $nota->id }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tanggal</td><td class="text-center" style="width: 50px"> : </td><td>{{ $nota->tanggal }}</td>
@@ -80,10 +80,10 @@
                                         </table>
                                         <table class="mt-4 mb-4">
                                             <tr>
-                                                <td>ID Supplier</td><td class="text-center" style="width: 50px"> : </td><td>{{ $nota->id_customer }}</td>
+                                                <td>ID Customer</td><td class="text-center" style="width: 50px"> : </td><td>{{ $nota->id_customer }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Nama Supplier</td><td class="text-center" style="width: 50px"> : </td><td>{{ $nota->nama_customer }}</td>
+                                                <td>Nama Customer</td><td class="text-center" style="width: 50px"> : </td><td>{{ $nota->nama_customer }}</td>
                                             </tr>
                                         </table>
                                         <div class="row">
@@ -124,8 +124,8 @@
                                         </div>
                                         <div class="row m-5">
                                             <div class="col-md-12 text-center">
-                                                <a href="{{ url('/a/inventory/print/' .$nota->id) }}"><button class="btn btn-outline-secondary mb-2">CETAK FAKTUR</button></a>
-                                                <a href="{{ url('/a/inventory/download/' .$nota->id) }}"><button class="btn btn-outline-info mb-2">DOWNLOAD</button></a>
+                                                <a href="{{ url('/a/riwayat-penjualan/print/' .$nota->id) }}"><button class="btn btn-outline-secondary mb-2">CETAK FAKTUR</button></a>
+                                                <a href="{{ url('/a/riwayat-penjualan/download/' .$nota->id) }}"><button class="btn btn-outline-info mb-2">DOWNLOAD</button></a>
                                             </div>
                                         </div>
                                     </div>
