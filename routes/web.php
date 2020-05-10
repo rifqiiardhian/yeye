@@ -96,4 +96,11 @@ Route::get('a/inventory/print/{id}', 'admin\InventoryController@print');
 Route::get('a/contact', 'admin\ContactController@index');
 Route::get('/a/contact/detail/{id}', 'admin\ContactController@detail');
 Route::get('/a/contact/delete/{id}', 'admin\ContactController@delete');
+//List User
+Route::get('a/list-user', 'admin\ListUserController@index');
+//Riwayat Penjualan
+Route::get('a/riwayat-penjualan', 'admin\RiwayatPenjualanController@index');
+Route::get('a/riwayat-penjualan/detail/{id}', 'admin\RiwayatPenjualanController@detail');
+Route::get('a/riwayat-penjualan/download/{id}', 'admin\RiwayatPenjualanController@download');
+Route::get('a/riwayat-penjualan/print/{id}', 'admin\RiwayatPenjualanController@print');
 // End Admin Routing

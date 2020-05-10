@@ -10,6 +10,9 @@
                 </a>
             </li>
             @endforeach
+            <li>
+                <a href="{{url('a/logout')}}"><i class="fas fa-power-off"></i>logout</a>
+            </li>
         </ul>
     </nav>
 </aside>

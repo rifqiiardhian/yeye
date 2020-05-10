@@ -20,7 +20,12 @@ class HomeController extends Controller
                             ->where('id_role', $id_role)
                             ->orderBy('urutan', 'asc')
                             ->get();
-            $data['active'] = 'home_active';
+            if($id_role == 1) {
+                $data['active'] = 'category_active';
+            }
+            else{
+                $data['active'] = 'home_active';
+            }
             $data['title'] = 'Toko Online | Admin Dashboard';
             $data['welcome_title'] = 'Halaman Dashboard Admin';
             $data['breadcrumb'] = 'Dashboard';
@@ -32,7 +37,6 @@ class HomeController extends Controller
             return view('admin/home', $data);
 
         }
-
     }
 
     //total user (role customers)
