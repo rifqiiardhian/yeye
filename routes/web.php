@@ -96,4 +96,7 @@ Route::get('/a/contact/detail/{id}', 'admin\ContactController@detail');
 Route::get('/a/contact/delete/{id}', 'admin\ContactController@delete');
 //List User
 Route::get('a/list-user', 'admin\ListUserController@index');
+//Riwayat Penjualan
+Route::get('a/riwayat-penjualan', 'admin\RiwayatPenjualanController@index');
+Route::get('a/riwayat-penjualan/detail/{id}', 'admin\RiwayatPenjualanController@detail');
 // End Admin Routing

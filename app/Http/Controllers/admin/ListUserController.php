@@ -19,7 +19,7 @@ class ListUserController extends Controller
             $data['menu'] = DB::table('t_menu')->where('id_role', $id_role)->orderBy('urutan', 'asc')->get();
             $data['active'] = 'list-user_active';
 
-            $data['title'] = 'Toko Online | Admin Kategori';
+            $data['title'] = 'Toko Online | Admin List User';
             $data['welcome_title'] = 'Halaman Admin List User';
             $data['breadcrumb'] = 'List User';
 
