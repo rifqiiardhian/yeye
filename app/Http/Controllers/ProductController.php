@@ -30,7 +30,19 @@ class ProductController extends Controller
     public function detail($id) {
         $data['title'] = 'Toko Online | Product';
 
-        $data['produk'] = DB::table('v_produk_kategori')->where('id', $id)->get();
+        $data['preview'] = DB::table('t_preview_produk')->where('id_produk',$id)->orderBy('id', 'asc')->get();
+
+        $produk = DB::table('v_produk_kategori')->where('id', $id)->get();
+
+        foreach ($produk as $value) {
+            $data['id'] = $value->id;
+            $data['foto'] = $value->foto;
+            $data['nama_produk'] = $value->nama_produk;
+            $data['harga'] = $value->harga;
+            $data['deskripsi'] = $value->deskripsi;
+            $data['kategori'] = $value->kategori;
+            $data['stok'] = $value->stok;
+        }
 
         if(Session::get('role') == 2) {
             $data['jumlahcart'] = DB::table('t_nota')->where([

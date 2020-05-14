@@ -41,7 +41,6 @@
     </section>
     <!-- Page Add Section End -->
 
-    @foreach($produk as $data)
     <!-- Product Page Section Beign -->
     <section class="product-page">
         <div class="container">
@@ -50,31 +49,37 @@
                     <div class="product-slider owl-carousel">
                         <div class="product-img">
                             <figure>
-                                <img src="{{ url($data->foto) }}" alt="">
+                                <img src="{{ url($foto) }}" alt="">
                             </figure>
                         </div>
+                        @foreach($preview as $previewfoto)
+                        <div class="product-img">
+                            <figure>
+                                <img src="{{ url($previewfoto->foto) }}" alt="">
+                            </figure>
+                        </div>
+                        @endforeach
                     </div>
 
                 </div>
                 <div class="col-lg-6">
                     <div class="product-content">
-                        <h2>{{ $data->nama_produk }}</h2>
+                        <h2>{{ $nama_produk }}</h2>
                         <div class="pc-meta">
-                            <h5>IDR. {{ intval($data->harga) }}</h5>
+                            <h5>IDR. {{ intval($harga) }}</h5>
                         </div>
-                        <p class="text-justify">{{ $data->deskripsi }}</p>
+                        <p class="text-justify">{{ $deskripsi }}</p>
                         <ul class="tags">
-                            <li><span>Kategori :</span> {{ $data->kategori }}</li>
-                            <li><span>Stok :</span> {{ $data->stok }}</li>
+                            <li><span>Kategori :</span> {{ $kategori }}</li>
+                            <li><span>Stok :</span> {{ $stok }}</li>
                         </ul>
-                        <a href="{{ url('/shop/cart?productId=' .$data->id)}}" class="primary-btn pc-btn">Add to cart</a>
+                        <a href="{{ url('/shop/cart?productId=' .$id)}}" class="primary-btn pc-btn">Add to cart</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Product Page Section End -->
-    @endforeach
 
     <!-- Logo Section Begin -->
     <div class="logo-section spad">
