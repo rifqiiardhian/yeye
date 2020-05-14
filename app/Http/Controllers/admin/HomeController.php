@@ -20,16 +20,12 @@ class HomeController extends Controller
                             ->where('id_role', $id_role)
                             ->orderBy('urutan', 'asc')
                             ->get();
-            if($id_role == 1) {
-                $data['active'] = 'category_active';
-            }
-            else{
-                $data['active'] = 'home_active';
-            }
+            $data['active'] = 'home_active';
+
             $data['title'] = 'Toko Online | Admin Dashboard';
             $data['welcome_title'] = 'Halaman Dashboard Admin';
             $data['breadcrumb'] = 'Dashboard';
-            
+
             $data['jml_order'] = $this->total_pesanan();
             $data['jml_users'] = $this->total_users();
             $data['jml_daily'] = $this->daily_revenue();
@@ -64,9 +60,9 @@ class HomeController extends Controller
                                 ->where('status_transaksi', '=', 'success')
                                 ->whereRaw('Date(tanggal) = CURDATE()')
                                 ->sum('tagihan');
-                               
-                                return $daily_rev; 
-                                
+
+                                return $daily_rev;
+
     }
 
     //total revenue
@@ -79,13 +75,13 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        
+
     }
 
     public function getLaporanPendapatan(Request $request)
     {
-        $result = DB::select("SELECT DATE_FORMAT(tanggal, '%d %M %Y') AS tgl, SUM(total) AS `total` 
-             FROM `t_nota` WHERE `jenis_faktur` = 'penjualan' AND `status_transaksi` = 'success' GROUP BY `tgl` ORDER BY `tgl` ASC", []);
+        $result = DB::select("SELECT DATE_FORMAT(tanggal, '%M') AS `bulan`, SUM(`total`) AS `total`
+             FROM `t_nota` WHERE `jenis_faktur` = 'penjualan' AND `status_transaksi` = 'success' GROUP BY `bulan` ORDER BY `id` ASC", []);
         return response($result);
     }
 }

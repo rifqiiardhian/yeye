@@ -46,6 +46,7 @@ Route::post('/shop/checkout/process', 'ShoppingController@done');
 Route::get('/shop/history/unpaid/{id}', 'ShoppingController@unpaid');
 Route::get('/shop/history/paid/process', 'ShoppingController@paid_process');
 Route::get('/shop/history/paid/{id}', 'ShoppingController@paid');
+Route::get('/history', 'ShoppingController@history');
 // Contact
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact/post', 'ContactController@success');

@@ -306,7 +306,7 @@ class ShoppingController extends Controller
                 'status_transaksi' => 'unpaid',
             ]);
 
-            return redirect('/shop/history/unpaid/' .$id)->with(['success' => 'Transaksi selesai, silakan lakukan pembayaran sebelum tanggal yang ditentukan']);
+            return redirect('/history')->with(['success' => 'Transaksi selesai, silakan cek data unpaid dan lakukan pembayaran sebelum tanggal yang ditentukan']);
         } else {
             return redirect('/shop/checkout?notaId=' .$id_nota);
         }
@@ -364,5 +364,33 @@ class ShoppingController extends Controller
         $data['title'] = 'Toko Online | Paid';
 
         return view('user/paid', $data);
+    }
+
+    public function history() {
+        $id_customer = Session::get('id_user');
+        $data['title'] = 'Toko Online | History';
+        $data['jumlahcart'] = DB::table('t_nota')->where([
+            ['status_transaksi','pending'],
+            ['jenis_faktur','penjualan'],
+            ['id_customer', $id_customer]
+        ])->count();
+
+        $data['unpaid'] = DB::table('t_nota')->where([
+            ['id_customer', $id_customer],
+            ['status_transaksi', 'unpaid'],
+            ['jenis_faktur', 'penjualan']
+        ])
+        ->orderBy('id', 'desc')
+        ->get();
+
+        $data['paid'] = DB::table('t_nota')->where([
+            ['id_customer', $id_customer],
+            ['status_transaksi', 'success'],
+            ['jenis_faktur', 'penjualan']
+        ])
+        ->orderBy('id', 'desc')
+        ->get();
+
+        return view('user/datahistory', $data);
     }
 }

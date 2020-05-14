@@ -78,7 +78,7 @@
                                         </div>
                                         @endif
                                     </div>
-                                
+
                                     <div class="row m-t-25">
                                         <div class="col-sm-6 col-lg-3">
                                             <div class="overview-item overview-item--c1">
@@ -87,13 +87,10 @@
                                                         <div class="icon">
                                                             <i class="zmdi zmdi-account-o"></i>
                                                         </div>
-                                                        <div class="text">
+                                                        <div class="text mb-4">
                                                             <h2>{{ $jml_users[0]->jumlah }}</h2>
                                                             <span>Member Terdaftar</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="overview-chart">
-                                                        <canvas id="widgetChart1"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,13 +102,10 @@
                                                         <div class="icon">
                                                             <i class="zmdi zmdi-shopping-cart"></i>
                                                         </div>
-                                                        <div class="text">
+                                                        <div class="text mb-4">
                                                             <h2>{{ $jml_order[0]->jumlah }}</h2>
                                                             <span>Transaksi Sukses</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="overview-chart">
-                                                        <canvas id="widgetChart2"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -123,13 +117,10 @@
                                                         <!-- <div class="icon">
                                                             <i class="zmdi zmdi-calendar-note"></i>
                                                         </div> -->
-                                                        <div class="text">
+                                                        <div class="text mt-4 mb-4">
                                                             <h2>Rp. {{ number_format($jml_daily,0,',','.') }}</h2>
                                                             <span>Penjualan Hari ini</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="overview-chart">
-                                                        <canvas id="widgetChart3"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,19 +132,16 @@
                                                         <!-- <div class="icon">
                                                             <i class="zmdi zmdi-money"></i>
                                                         </div> -->
-                                                        <div class="text">
+                                                        <div class="text mt-4 mb-4">
                                                             <h2>Rp. {{ number_format($jml_pendapatan,0,',','.') }}</h2>
                                                             <span>Total Pendapatan</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="overview-chart">
-                                                        <canvas id="widgetChart4"></canvas>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                             
+
                                 </div>
                             </div>
 
@@ -181,7 +169,7 @@
                 </div>
             </section>
         </div>
-            
+
     </div>
     <!-- END PAGE CONTENT  -->
     </div>
@@ -191,7 +179,7 @@
     <script src="{{url('/assets/library/bootstrap-4.4.1-dist/js/bootstrap.js')}}"></script>
     <script src="{{url('/assets/highcharts/code/highcharts.js')}}"></script>
     <script src="{{url('/assets/app.js')}}"></script>
-    
+
     @include('admin/include/javascript')
 
 </body>

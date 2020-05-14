@@ -136,6 +136,8 @@
                                 </table>
                             </div>
                         </div>
+
+                        <a href="{{ url('/history')}}" class="text-center"><button class="btn btn-sm btn-light">KEMBALI KE HISTORY</button></a>
                     </div>
                 </div>
             </div>

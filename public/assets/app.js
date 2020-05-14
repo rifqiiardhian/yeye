@@ -6,11 +6,14 @@ $(document).ready(function() {
         success     : function(result) {
             // console.log(result);
 
-            var data = [];
+            var databulan = [];
+            var datatotal = [];
                        for(var i=0; i<result.length; i++) {
-                           data[i] = parseInt(result[i]['total']);
+                           databulan[i] = result[i]['bulan'];
+                           datatotal[i] = parseInt(result[i]['total']);
                        }
-                       console.log(data);
+                       console.log(databulan);
+                       console.log(datatotal);
 
                        if($('#grafik-pendapatan').length) {
                            var date = new Date();
@@ -22,12 +25,13 @@ $(document).ready(function() {
                                    text: 'Grafik Pendapatan Perusahaan Tahun ' + date.getFullYear()
                                },
                                subtitle: {
-                                   text: 'VIOLET'
+                                   text: 'Faktur Penjualan'
                                },
                                xAxis: {
-                                   categories: [
-                                       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'
-                                   ],
+                                   categories: databulan,
+                                   title: {
+                                       text: 'Tanggal'
+                                   },
                                    crosshair: true
                                },
                                yAxis: {
@@ -44,7 +48,7 @@ $(document).ready(function() {
                                },
                                series:[ {
                                    name: 'Pendapatan',
-                                   data: data
+                                   data: datatotal
                                }]
                            });
                        }

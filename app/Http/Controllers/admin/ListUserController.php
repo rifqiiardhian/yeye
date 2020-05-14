@@ -25,6 +25,7 @@ class ListUserController extends Controller
 
             $data['user'] = DB::table('t_user')
                             ->orderBy('id', 'asc')
+                            ->where('id_role', 2)
                             ->paginate(5);
 
             return view('admin/list_user', $data);

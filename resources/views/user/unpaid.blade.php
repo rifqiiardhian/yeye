@@ -28,6 +28,9 @@
     <section class="page-add cart-page-add">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12">
+                    <a href="{{ url('/history')}}"><button class="btn btn-sm btn-light">KEMBALI KE HISTORY</button></a>
+                </div>
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
                         <h2 class="text-danger">Unpaid<span>.</span></h2>

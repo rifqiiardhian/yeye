@@ -53,6 +53,8 @@ class AuthController extends Controller
                 return redirect('/')->with(['success' => 'Selamat datang ' .$nama.' !']);
             } elseif ($id_role == 3) {
                 return redirect('a/home')->with(['success' => 'Selamat datang ' .$nama.' !']);
+            } elseif ($id_role == 4) {
+                return redirect('a/riwayat-penjualan')->with(['success' => 'Selamat datang ' .$nama.' !']);
             }
 
         } else {
