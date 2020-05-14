@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="inner-header">
             <div class="logo">
-                <a href="./index.html"><img src="{{ url('assets/template/img/logo.png')}}" alt=""></a>
+                <a href="{{ url('/') }}"><img src="{{ url('assets/template/img/logo2.png')}}" alt=""></a>
             </div>
             <div class="header-right">
                 <a href="{{ url('/profile')}}">

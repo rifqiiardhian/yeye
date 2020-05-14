@@ -4,7 +4,7 @@
         <div class="header4-wrap">
             <div class="header__logo">
                 <a href="#">
-                    <img src="{{ url('assets/admin/images/icon/logo-blue.png')}}" alt="CoolAdmin" />
+                    <img src="{{ url('assets/template/img/logo2.png')}}" alt="CoolAdmin" />
                 </a>
             </div>
             <div class="header__tool">
